@@ -1,0 +1,64 @@
+﻿@{
+	Layout = "_AdminLayout";
+}
+<html>
+<head>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+	<h1 class="d-flex justify-content-center">List Book</h1>
+	<div id="plus"></div>
+
+	<table id="myTable" class="table table-hover table-striped">
+		<thead class="table-dark">
+			<tr>
+				<th>No</th>
+				<th>Name</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody id="tbodyBuku">
+		</tbody>
+	</table>
+
+	<!-- Modal Detail -->
+	<div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="modalLabelDetail">Detail</h1>
+				</div>
+				<div class="modal-body">
+					...
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal Insert -->
+	<div class="modal fade" id="modalInsert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="modalLabelInsert">Insert Data</h1>
+				</div>
+				<div class="modal-body" id="modalBodyInsert">
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" id="book">Submit</button>
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+@section Scripts{
+	<script src="~/js/buku.js" asp-append-version="true"></script>
+}

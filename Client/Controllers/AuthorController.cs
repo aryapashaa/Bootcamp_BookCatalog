@@ -1,10 +1,11 @@
 ﻿using Client.Base;
 using Client.Models;
 using Client.Repositories.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Client.Controllers;
-
+[Authorize(Roles = "Admin")]
 public class AuthorController : BaseController<Author,AuthorRepository,int>
 {
     private readonly AuthorRepository _authorrepository;
@@ -15,7 +16,6 @@ public class AuthorController : BaseController<Author,AuthorRepository,int>
     }
 
     // Index
-    //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> Index()
     {
         var result = await _authorrepository.Get();

@@ -1,10 +1,11 @@
 ﻿using Client.Base;
 using Client.Models;
 using Client.Repositories.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Client.Controllers;
-
+[Authorize(Roles = "Admin")]
 public class PublisherController : BaseController<Publisher,PublisherRepository,int>
 {
     private readonly PublisherRepository _publisherrepository;

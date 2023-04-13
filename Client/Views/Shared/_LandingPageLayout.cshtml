@@ -14,6 +14,9 @@
 	<link href="~/lib/book/css/styles.css" rel="stylesheet" />
 	<!-- Font Awesome-->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/app.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/Client.styles.css" asp-append-version="true" />
 </head>
 <body>
 	<!-- Navigation-->
@@ -48,7 +51,7 @@
 				else
 				{
 					<li class="nav-item d-flex align-items-center">
-						<a href="https://localhost:7099/Book" class="nav-link text-body font-weight-bold px-2">
+						<a href="https://localhost:7099/Dashboard" class="nav-link text-body font-weight-bold px-2">
 							<i class="fa fa-tachometer me-sm-1"></i>
 							<span class="d-sm-inline d-none">Dashboard</span>
 						</a>
@@ -304,5 +307,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="~/lib/book/js/scripts.js"></script>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookCatalog_API.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20230413085056_InitialCommit")]
+    [Migration("20230413151928_InitialCommit")]
     partial class InitialCommit
     {
         /// <inheritdoc />

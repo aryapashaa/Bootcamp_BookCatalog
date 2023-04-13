@@ -1,10 +1,11 @@
 ﻿using Client.Base;
 using Client.Models;
 using Client.Repositories.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Client.Controllers;
-
+//[Authorize(Roles = "Admin")]
 public class BookController : BaseController<Book,BookRepository,int>
 {
     private readonly BookRepository _bookrepository;
@@ -38,6 +39,7 @@ public class BookController : BaseController<Book,BookRepository,int>
 
     // Create - GET
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create()
     {
         return View();
@@ -46,6 +48,7 @@ public class BookController : BaseController<Book,BookRepository,int>
     // Create - POST
     [HttpPost]
     [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create(Book book)
     {
         if (ModelState.IsValid)
@@ -67,6 +70,7 @@ public class BookController : BaseController<Book,BookRepository,int>
 
     // Edit - GET
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Edit(int id)
     {
         var result = await _bookrepository.Get(id);
@@ -76,6 +80,7 @@ public class BookController : BaseController<Book,BookRepository,int>
     // Edit - POST
     [HttpPost]
     [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Edit(Book book, int id)
     {
         if (ModelState.IsValid)
@@ -97,6 +102,7 @@ public class BookController : BaseController<Book,BookRepository,int>
 
     // Delete - GET
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id)
     {
         var result = await _bookrepository.Get(id);
@@ -106,6 +112,7 @@ public class BookController : BaseController<Book,BookRepository,int>
     // Delete - POST
     [HttpPost]
     [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Remove(int id)
     {
         if (ModelState.IsValid)
