@@ -6,34 +6,25 @@ const fetchApi = async (url) => {
 }
 
 const showData = async (url) => {
-    loader.classList.remove("d-none");
-    const data = await fetchApi(url)
-    const results = data.results;
-    const resultsLength = results.length;
-    const list = [];
-
-    for (let i = 0; i < resultsLength; i++) {
-        list.push(fetchApi(results[i].url))
-    }
-
-    Promise.all(list).then(data => {
-        display(data)
-    })
+    const results = await fetchApi(url)
+    const data = results.data;
+    display(data)
 }
 
 const display = async (data) => {
     try {
         for (let i = 0; i < data.length; i++) {
-            const bookIsbn = data[i].isbn
-            const bookName = data[i].title
+            const bookId = data[i].id;
+            const bookName = data[i].title;
             const bookImg = data[i].pictureUrl;
+            const bookRating = data[i].rating;
 
             bookCards.innerHTML += `
-            <div class="card shadow-sm" onclick="selectCard(${bookIsbn})">
+            <div class="card shadow-sm" onclick="detail('https://localhost:7005/api/Books/',${bookId})" data-bs-toggle="modal" data-bs-target="#modalBook">
                 <img src="${bookImg}" class="card-img-top p-3" alt="${bookName}">
                 <div class="card-body px-0">
                     <h5 class="card-title text-center">${bookName}</h5>
-                    <div class="card-text book-id">${bookId}</div>
+                    <div class="card-text book-rating text-center"><i class="bi-star-fill"></i> ${bookRating}</div>
                 </div>
             </div>
             `
@@ -43,24 +34,59 @@ const display = async (data) => {
     }
 }
 
-const selectCard = async (id) => {
-    const link = `https://localhost:7005/api/Books${id}`;
-    const res = await fetch(link);
-    const book = await res.json();
-    displayPopup(book);
+function detail(stringUrl, key) {
+    $.ajax({
+        url: stringUrl
+    }).done((result) => {
+        let text = "";
+        const isbn = result.data[key - 1].isbn;
+        const title = result.data[key-1].title;
+        const releaseYear = result.data[key-1].releaseYear;
+        const synopsis = result.data[key-1].synopsis;
+        const pageNumber = result.data[key-1].pageNumber;
+        const price = result.data[key-1].price;
+        const genre = result.data[key-1].genre;
+        const img = result.data[key-1].pictureUrl;
+        const tokped = result.data[key-1].tokopediaUrl;
+        const shopee = result.data[key-1].shopeeUrl;
+        const lazada = result.data[key-1].lazadaUrl;
+        const rating = result.data[key - 1].rating;
+        text += `
+               <img src="${img}" class="card-img p-3">
+
+               <ul>
+               <li>ISBN             : ${isbn}</li>
+               <li>Title            : ${title}</li>
+               <li>Release Year     : ${releaseYear}</li>
+               <li>Rating           : ${rating}</li>
+               <li>Synopsis         : ${synopsis}</li>
+               <li>Page Number      : ${pageNumber}</li>
+               <li>Genre            : ${genre}</li>
+               <li>Tokopedia Url    : ${tokped}</li>
+               <li>Shopee Url       : ${shopee}</li>
+               <li>Lazada Url       : ${lazada}</li>
+               </ul>
+                `;
+        $("h1#exampleModalLabel").html(title);
+        $(".modal-body").html(text);
+    });
 }
 
-const displayPopup = (book) => {
-    const height = book.height * 0.1;
-    const weight = book.weight * 0.1;
+const selectCard = async (id) => {
+    const link = `https://localhost:7005/api/Books/${id}`;
+    const res = await fetch(link);
+    const book = await res.json();
+    const data = book.data
+    displayPopup(data);
+}
+
+const displayPopup = (data) => {
     const htmlString = `
     <div class="popup"">
         <button id="closeBtn" onclick="closePopup()">Close</button>
         <div class="bookCard">
-            <img class="card-image" src="${book.pictureUrl}"/>
-            <h2 class="card-title" style="text-align:center;">${book.name}</h2>
-            <p>Height: ${height.toFixed(1)}m | Weight: ${weight.toFixed(1)}kg</p>
-            <h5 class="ability-title" style="text-align:center;">Abilities</h5>
+            <img class="card-image" src="${data.pictureUrl}"/>
+            <h2 class="card-title" style="text-align:center;">${data.title}</h2>
     </div>
     `;
     catalog.innerHTML += htmlString;

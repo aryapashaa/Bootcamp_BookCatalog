@@ -18,8 +18,6 @@ public class Book
     public string Synopsis { get; set; }
     [Required, Column("page_number")]
     public int PageNumber { get; set; }
-    [Column("price", TypeName = "numeric(19,0)")]
-    public int Price { get; set; }
     [Required, Column("genre"), MaxLength(25)]
     public string Genre { get; set; }
     [Column("picture_url", TypeName = "text")]

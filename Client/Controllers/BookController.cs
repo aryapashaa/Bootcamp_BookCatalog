@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Client.Controllers;
-//[Authorize(Roles = "Admin")]
+[Authorize(Roles = "Admin")]
 public class BookController : BaseController<Book,BookRepository,int>
 {
     private readonly BookRepository _bookrepository;

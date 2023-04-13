@@ -10,9 +10,14 @@
 
 body {
     background: var(--white);
-    color: var(--darkgray);
+    color: var(--dark);
     /*font-family: 'Roboto Slab', serif;*/
     /* zoom: 78%; */
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
 }
 
 /*.header {
@@ -24,6 +29,10 @@ h1 {
     /*font-family: 'Press Start 2P', cursive;
     color: #ffcb05;
     -webkit-text-stroke: 1px #2a75bb;*/
+}
+
+.bi-star-fill{
+    color:gold;
 }
 
 .book-cards, .btn-group {
@@ -64,7 +73,7 @@ h1 {
             position: absolute;
             top: 0;
             right: 0;
-            background: var(--darkgray);
+            background: var(--dark);
             color: var(--white);
             padding: 2px 7px;
             border-radius: 0 5px;
@@ -114,7 +123,7 @@ h1 {
     background: #32323250;
 }*/
 
-/*.popup {
+.popup {
     position: fixed;
     top: 0;
     left: 0;
@@ -123,29 +132,28 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #32323250
 }
 
     .popup .card-title, p {
         text-transform: capitalize;
         color: var(--white);
-        text-shadow: 0 0 3px #000, 2px 2px 7px #9be1ff, -2px -2px 7px #9be1ff;
     }
 
     .popup .card-text, .ability-title {
         text-transform: capitalize;
         color: var(--white);
-        text-shadow: 0 0 3px #000, 2px 2px 7px #FF5C5C, -2px -2px 7px #FF5C5C;
-    }*/
+    }
 
 .card-image {
-    width: 100%;
+    width: 50%;
 }
 
 #closeBtn {
     position: absolute;
     top: 20px;
     right: 20px;
-    background-color: #ffcb05;
+    background-color: var(--dark);
     padding: 10px 20px;
     border: none;
     color: white;
@@ -156,5 +164,5 @@ h1 {
     #closeBtn:hover {
         cursor: pointer;
         transform: translateY(-1px);
-        box-shadow: 0px 1px 2px #2a75bb;
+        box-shadow: 0px 1px 2px var(--dark);
     }

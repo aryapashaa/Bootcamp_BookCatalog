@@ -16,7 +16,6 @@ public class Book
     public string Synopsis { get; set; }
 	[Display(Name = "Page Number")]
 	public int PageNumber { get; set; }
-    public int Price { get; set; }
     public string Genre { get; set; }
 	[Display(Name = "Picture")]
 	public string? PictureUrl { get; set; }
