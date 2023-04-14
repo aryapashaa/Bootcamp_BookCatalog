@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookCatalog_API.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20230413151928_InitialCommit")]
+    [Migration("20230414054300_InitialCommit")]
     partial class InitialCommit
     {
         /// <inheritdoc />
@@ -160,10 +160,6 @@ namespace BookCatalog_API.Migrations
                     b.Property<string>("PictureUrl")
                         .HasColumnType("text")
                         .HasColumnName("picture_url");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric(19,0)")
-                        .HasColumnName("price");
 
                     b.Property<int>("PublisherId")
                         .HasColumnType("int")

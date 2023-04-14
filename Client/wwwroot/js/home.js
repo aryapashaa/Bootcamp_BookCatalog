@@ -18,13 +18,19 @@ const display = async (data) => {
             const bookName = data[i].title;
             const bookImg = data[i].pictureUrl;
             const bookRating = data[i].rating;
+            if (bookRating == null) {
+                rate = "Unrated";
+            }
+            else {
+                rate = bookRating
+            }
 
             bookCards.innerHTML += `
             <div class="card shadow-sm" onclick="detail('https://localhost:7005/api/Books/',${bookId})" data-bs-toggle="modal" data-bs-target="#modalBook">
                 <img src="${bookImg}" class="card-img-top p-3" alt="${bookName}">
                 <div class="card-body px-0">
                     <h5 class="card-title text-center">${bookName}</h5>
-                    <div class="card-text book-rating text-center"><i class="bi-star-fill"></i> ${bookRating}</div>
+                    <div class="card-text book-rating text-center"><i class="bi-star-fill"></i> ${rate}</div>
                 </div>
             </div>
             `
@@ -51,6 +57,12 @@ function detail(stringUrl, key) {
         const shopee = result.data[key-1].shopeeUrl;
         const lazada = result.data[key-1].lazadaUrl;
         const rating = result.data[key - 1].rating;
+        if (rating == null) {
+            rate = "Unrated";
+        }
+        else {
+            rate = rating
+        }
         text += `
                <img src="${img}" class="card-img p-3">
 
@@ -58,13 +70,13 @@ function detail(stringUrl, key) {
                <li>ISBN             : ${isbn}</li>
                <li>Title            : ${title}</li>
                <li>Release Year     : ${releaseYear}</li>
-               <li>Rating           : ${rating}</li>
+               <li>Rating           : ${rate}</li>
                <li>Synopsis         : ${synopsis}</li>
                <li>Page Number      : ${pageNumber}</li>
                <li>Genre            : ${genre}</li>
-               <li>Tokopedia Url    : ${tokped}</li>
-               <li>Shopee Url       : ${shopee}</li>
-               <li>Lazada Url       : ${lazada}</li>
+               <a href="${tokped}" target="_blank" ><img src="https://www.freepnglogos.com/uploads/logo-tokopedia-png/berita-tokopedia-info-berita-terbaru-tokopedia-6.png" width="100" /></a>
+               <a href="${shopee}" target="_blank" ><img src="https://www.freepnglogos.com/uploads/shopee-logo-png/shopee-logo-shop-with-the-gentlemen-collection-and-win-the-shopee-0.png" width="100" /></a>
+               <a href="${lazada}" target="_blank" ><img src="https://seeklogo.com/images/L/lazada-logo-D8D78A9569-seeklogo.com.png" width="100" /></a>
                </ul>
                 `;
         $("h1#exampleModalLabel").html(title);

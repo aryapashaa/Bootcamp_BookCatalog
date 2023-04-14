@@ -1,6 +1,7 @@
 using Client.Repositories.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using System.Net;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +12,7 @@ builder.Services.AddControllersWithViews();
 // Configure Session
 builder.Services.AddSession(option =>
 {
-    option.IdleTimeout = TimeSpan.FromMinutes(5);
+    option.IdleTimeout = TimeSpan.FromMinutes(30);
 });
 
 // Dependency Injection
@@ -59,6 +60,19 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseStatusCodePages(async context =>
+{
+	var response = context.HttpContext.Response;
+
+	if (response.StatusCode.Equals((int)HttpStatusCode.Unauthorized))
+	{
+		response.Redirect("/Unauthorized");
+	}
+	else if (response.StatusCode.Equals((int)HttpStatusCode.Forbidden))
+	{
+		response.Redirect("/Forbidden");
+	}
+});
 
 app.UseSession();
 app.Use(async (context, next) =>

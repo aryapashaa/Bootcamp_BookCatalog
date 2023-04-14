@@ -32,7 +32,8 @@ public class AccountController : BaseController<Account,AccountRepository,int>
         var result = await _accountrepository.Register(registerVM);
         if (result.StatusCode == "200")
         {
-            return RedirectToAction("Index","Home");
+			TempData["msg_register"] = "<script>alert('Register succesfully');</script>";
+			return RedirectToAction("Index","Home");
         }
         return View();
     }
@@ -59,7 +60,8 @@ public class AccountController : BaseController<Account,AccountRepository,int>
         else if (result.StatusCode == "200")
         {
             HttpContext.Session.SetString("JWToken", result.Data);
-            return RedirectToAction("Index", "Home");
+			TempData["msg_login"] = "<script>alert('Login succesfully');</script>";
+			return RedirectToAction("Index", "Home");
         }
         return View();
     }

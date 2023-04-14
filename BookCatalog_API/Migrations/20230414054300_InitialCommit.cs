@@ -111,7 +111,6 @@ namespace BookCatalog_API.Migrations
                     release_year = table.Column<string>(type: "nchar(4)", nullable: false),
                     synopsis = table.Column<string>(type: "text", nullable: false),
                     page_number = table.Column<int>(type: "int", nullable: false),
-                    price = table.Column<decimal>(type: "numeric(19,0)", nullable: false),
                     genre = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     picture_url = table.Column<string>(type: "text", nullable: true),
                     tokopedia_url = table.Column<string>(type: "text", nullable: true),

@@ -15,10 +15,10 @@ body {
     /* zoom: 78%; */
 }
 
-.navbar {
+/*.navbar {
     position: sticky;
     top: 0;
-}
+}*/
 
 /*.header {
     font-family: 'Segoe UI', sans-serif;
@@ -50,7 +50,7 @@ h1 {
         background: var(--white);
         text-transform: capitalize;
         width: 160px;
-        height: 245px;
+        height: 300px;
     }
 
         .book-cards .card .card-body {

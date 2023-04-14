@@ -158,10 +158,6 @@ namespace BookCatalog_API.Migrations
                         .HasColumnType("text")
                         .HasColumnName("picture_url");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric(19,0)")
-                        .HasColumnName("price");
-
                     b.Property<int>("PublisherId")
                         .HasColumnType("int")
                         .HasColumnName("publisher_id");

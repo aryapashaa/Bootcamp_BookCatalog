@@ -14,6 +14,13 @@
 	<link href="~/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+	@if (User.IsInRole("Admin") || (User.IsInRole("User")))
+	{
+		@Html.Raw(TempData["msg_login"])
+	}else
+	{
+		@Html.Raw(TempData["msg_register"])
+	}
 	<div class="container">
 		<div class="book-cards gap-3 mb-3" id="book-cards"></div>
 	</div>
