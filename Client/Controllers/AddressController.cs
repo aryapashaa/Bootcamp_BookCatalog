@@ -1,10 +1,11 @@
 ﻿using Client.Base;
 using Client.Models;
 using Client.Repositories.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Client.Controllers;
-
+[Authorize(Roles = "Admin")]
 public class AddressController : BaseController<Address,AddressRepository,int>
 {
     private readonly AddressRepository _addressrepository;
